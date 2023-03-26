@@ -16,8 +16,24 @@
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href="{{ route('post.add')}}">ajouter</a>
                         <a class="dropdown-item" href="#"></a>
-                    </div>
+                    </div></li>
+                 @auth
+          <li class="nav-item">
+                    <a class="nav-link active" href="{{ route('profile.show')}}" aria-current="page"><span><i class="fa fa-home" aria-hidden="true"></i></span>{{ auth()->user()->name}}</a>
                 </li>
+
+@endauth
+
+@guest
+          <li class="nav-item">
+                    <a class="nav-link active" href="{{url("/login")}}" aria-current="page"><span><i class="fa fa-home" aria-hidden="true"></i></span>login</a>
+                </li>
+                        <li class="nav-item">
+                    <a class="nav-link active" href="{{url("/register")}}" aria-current="page"><span><i class="fa fa-home" aria-hidden="true"></i></span>register</a>
+                </li>
+@endguest
+
+
             </ul>
             <form class="d-flex my-2 my-lg-0">
                 <input class="form-control me-sm-2" type="text" placeholder="Search">
