@@ -34,4 +34,9 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return redirect("/");
     })->name('dashboard');
+    Route::get('/dash', function () {
+        return view("dashboard");
+    })->name('dash');
+
+
 });
