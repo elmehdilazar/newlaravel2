@@ -23,6 +23,7 @@ class PostFactory extends Factory
             'slug' => Str::slug($title),
             'body' => $this->faker->text(),
             'image' =>'default.png',
+            'user_id' =>null,
         ];
 
     }
