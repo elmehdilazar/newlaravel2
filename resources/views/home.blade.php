@@ -20,6 +20,7 @@ home
       <img class="card-img-top" src="{{asset("uploads/".$value->image)}}" alt="Title">
       <div class="card-body pb-6" style="height: 16vh">
         <h4 class="card-title">{{ $value->title }}</h4>
+        <SMALl class="text-danger"><b>{{ !empty($value->User->name)? $value->User->name:null}}</b></SMALl>
         <p class="card-text">{{ Str::limit($value->body, 80, '...') }}</p>
       </div>
   <div class="card-footer">

@@ -19,6 +19,8 @@
                 </div>
 
             </div>
+            @if (auth()->user()->id=$posts->user_id)
+
             <div class="col mt-3  d-flex justify-content-center">
                 <a name="" id="" class="btn btn-primary"
                     href="{{ route('post.edit', ['slug' => $posts->slug]) }}" role="button">editer</a>
@@ -36,6 +38,7 @@
                 type="button" form="{{ $posts->id }}" class="btn btn-danger">supprimé</button>
 
             </div>
+            @endif
         </div>
     </div>
 @endsection

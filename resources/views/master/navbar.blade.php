@@ -11,13 +11,14 @@
                     <a class="nav-link active" href="{{url("/")}}" aria-current="page"><span><i class="fa fa-home" aria-hidden="true"></i></span>home</a>
                 </li>
 
-                <li class="nav-item dropdown">
+
+                 @auth
+                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">posts</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href="{{ route('post.add')}}">ajouter</a>
                         <a class="dropdown-item" href="#"></a>
                     </div></li>
-                 @auth
           <li class="nav-item">
                     <a class="nav-link active" href="{{ route('profile.show')}}" aria-current="page"><span><i class="fa fa-home" aria-hidden="true"></i></span>{{ auth()->user()->name}}</a>
                 </li>
