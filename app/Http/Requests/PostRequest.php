@@ -21,7 +21,7 @@ class PostRequest extends FormRequest
      */
     public function rules(): array
     {
-        if (!$this->route('id')) {
+        if ($this->route('id')) {
             return [
                 //
                 'title' => 'required|min:3|max:20',

@@ -19,7 +19,10 @@
                 </div>
 
             </div>
-            @if (auth()->user()->id=$posts->user_id)
+            @auth
+
+
+            @if (auth()->user()->id=$posts->user_id || auth()->user()->is_admin)
 
             <div class="col mt-3  d-flex justify-content-center">
                 <a name="" id="" class="btn btn-primary"
@@ -38,7 +41,10 @@
                 type="button" form="{{ $posts->id }}" class="btn btn-danger">supprimé</button>
 
             </div>
+
+
             @endif
+              @endauth
         </div>
     </div>
 @endsection

@@ -181,6 +181,11 @@ return [
             'image' => "le type du fichier n est pas valide",
             'max' => 'la taill du ficher  est :max > 2048 ko',
         ],
+        'name'=>[
+            'required' => 'nom non valide',
+            'min' => 'nom est :min',
+            'max' => 'nom est :max',
+        ]
     ],
 
     /*

@@ -15,13 +15,16 @@ home
                 @endif
 <div class="row my-4">
 @foreach ($posts as $value)
-<div class="col-4 my-4">
-    <div class="card  ">
+<div class="col-4 my-4 ">
+    <div class="card shadow ">
       <img class="card-img-top" src="{{asset("uploads/".$value->image)}}" alt="Title">
       <div class="card-body pb-6" style="height: 16vh">
-        <h4 class="card-title">{{ $value->title }}</h4>
+{{-- @dd($value->categories) --}}
+        <h4 class="card-title">{{ $value->title }}  <small class="badge bg-secondary">{{ !empty($value->categories->id)? $value->categories->name:"no category"}}</small> </h4>
         <SMALl class="text-danger"><b>{{ !empty($value->User->name)? $value->User->name:null}}</b></SMALl>
         <p class="card-text">{{ Str::limit($value->body, 80, '...') }}</p>
+
+
       </div>
   <div class="card-footer">
 

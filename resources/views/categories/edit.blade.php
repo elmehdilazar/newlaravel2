@@ -13,7 +13,7 @@
         <div class="col-6">
             <div class="card">
                 <div class="card-header d-flex justify-content-center bg-dark text-light">
-                    modifier {{ $posts->title }}
+                    modifier {{ $categories->name }}
                 </div>
 
                 @if ($errors->any())
@@ -25,7 +25,8 @@
         </ul>
     </div>
 @endif
-                <form action="{{ route("post.update",$posts->id) }}" method="post" enctype="multipart/form-data">
+
+                <form action="{{ route('categories.update', $categories->id)}}" method="post" >
  @csrf  {{-- crsf tocken    --}}
                    @method("put") {{-- pour modifier    --}}
                     <div class="card-body">
@@ -33,28 +34,9 @@
 
                         <div class="mb-3">
 
-                            <input type="text" name="title" id="" class="form-control" placeholder="title"
-                              value="{{ $posts->title }}"  aria-describedby="helpId">
+                            <input type="text" name="name" id="" class="form-control" placeholder="title"
+                              value="{{ $categories->name }}"  aria-describedby="helpId">
 
-                        </div>
-
-                        <div class="mb-3">
-
-                            <textarea id="my-textarea" class="form-control" placeholder="description"name="body"   rows="3">{{ $posts->body }}</textarea>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="form-label">Choose file</label>
-                            <input type="file" class="form-control" name="image" id="" placeholder=""
-                                aria-describedby="fileHelpId">
-                        </div>
-                          <div class="form-group">
-                            <label for="my-select">categories</label>
-                            <select id="my-select" class="form-control" name="cat_id">
-                                <option selected>select category</option>
-                            @foreach ($cat as $item)
-                                      <option value="{{$item->id}}">{{$item->name}}</option>
-                            @endforeach
-                            </select>
                         </div>
                         <div class="mb-3 text-center">
                             <button type="submit" class="btn btn-primary">modifer</button>

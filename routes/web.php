@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -25,6 +26,11 @@ Route::prefix('posts')->group(function () {
     Route::put('/update/{id}', [homeController::class, "update"])->name("post.update");
     Route::delete('/delete/{id}', [homeController::class, "delete"])->name("post.delete");
 });
+Route::resource('categories', CategoriesController::class)->parameters(
+    [
+        "id"=>"id_cat"
+    ]
+);
 
 Route::middleware([
     'auth:sanctum',

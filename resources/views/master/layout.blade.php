@@ -7,7 +7,7 @@
     <title>{{ env("APP_NAME","laravel")}} | @yield('title')</title>
     @yield("style")
 </head>
-<body style="background-color: #eaebec;">
+<body style="">
 <div class="container">
     @include("master.navbar")
     <div class="row">

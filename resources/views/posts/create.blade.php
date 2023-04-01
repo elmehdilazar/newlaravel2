@@ -44,6 +44,15 @@
                             <input type="file" class="form-control" name="image" id="" placeholder=""
                                 aria-describedby="fileHelpId">
                         </div>
+                        <div class="form-group">
+                            <label for="my-select">categories</label>
+                            <select id="my-select" class="form-control" name="cat_id">
+                                <option selected>select category</option>
+                            @foreach ($cat as $item)
+                                      <option value="{{$item->id}}">{{$item->name}}</option>
+                            @endforeach
+                            </select>
+                        </div>
                         <div class="mb-3 text-center">
                             <button type="submit" class="btn btn-primary">ajouter</button>
                         </div>

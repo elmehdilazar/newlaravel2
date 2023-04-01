@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow">
       <div class="container">
         <a class="navbar-brand" href="{{url("/")}}">{{ env("APP_NAME","laravel")}}</a>
         <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId"
@@ -13,15 +13,23 @@
 
 
                  @auth
+
                  <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">posts</a>
                     <div class="dropdown-menu" aria-labelledby="dropdownId">
                         <a class="dropdown-item" href="{{ route('post.add')}}">ajouter</a>
                         <a class="dropdown-item" href="#"></a>
                     </div></li>
-          <li class="nav-item">
-                    <a class="nav-link active" href="{{ route('profile.show')}}" aria-current="page"><span><i class="fa fa-home" aria-hidden="true"></i></span>{{ auth()->user()->name}}</a>
-                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="" id="dropdownId" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                            <a class="dropdown-item" href="{{ route('categories.create')}}">ajouter</a>
+                            <a class="dropdown-item" href="#"></a>
+                        </div></li>
+                        <li class="nav-item">
+                           <a class="nav-link active" href="{{ route('profile.show')}}" aria-current="page"><span><i class="fa fa-home" aria-hidden="true"></i></span>{{ auth()->user()->name}}</a>
+                       </li>
+
 
 @endauth
 

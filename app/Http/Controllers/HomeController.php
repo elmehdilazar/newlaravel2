@@ -6,6 +6,7 @@ use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
+use App\Models\Categories;
 
 class HomeController extends Controller
 {
@@ -29,7 +30,8 @@ class HomeController extends Controller
     }
     public function create_post()
     {
-        return view("posts.create");
+        $cat = Categories::all();
+        return view("posts.create",["cat"=>$cat]);
     }
     public function store(PostRequest $request)
     {
@@ -58,6 +60,7 @@ class HomeController extends Controller
                 "slug" => Str::slug($request->title),
                 "image" => $image_name,
                 "user_id" => auth()->user()->id,
+                "cat_id" => $request->cat_id
             ]
         );
         return redirect()->route("home")->with([
@@ -66,9 +69,9 @@ class HomeController extends Controller
     }
     // edit page
     public function edit($slug = null)
-    {
+    {    $cat = Categories::all();
         $post = Post::where("slug", $slug)->first();
-        return view("posts.edit", ["posts" => $post]);
+        return view("posts.edit", ["posts" => $post,"cat"=>$cat]);
     }
     // update data
     public function update(PostRequest $request, $id = null)
@@ -88,7 +91,8 @@ class HomeController extends Controller
             "title" => $request->title,
             "body" => $request->body,
             "slug" => Str::slug($request->title),
-            "image" => $post->image
+            "image" => $post->image,
+            "cat_id" => $request->cat_id
         ]);
         return redirect()->route("home")->with([
             "success" => "articel modifier"
