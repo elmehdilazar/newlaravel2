@@ -19,18 +19,14 @@ Route::get('/', [HomeController::class, "index"])->name("home");
 
 
 Route::prefix('posts')->group(function () {
-    Route::get('/add', [HomeController::class, "create_post"])->name("post.add");
+    Route::get('/add', [HomeController::class, "create"])->name("post.add");
     Route::get('/{slug}',[HomeController::class, "show"] )->name("post.show");
     Route::post('/store',[HomeController::class, "store"])->name("post.store");
     Route::get('/edit/{slug}', [homeController::class,"edit"])->name("post.edit");
     Route::put('/update/{id}', [homeController::class, "update"])->name("post.update");
     Route::delete('/delete/{id}', [homeController::class, "delete"])->name("post.delete");
 });
-Route::resource('categories', CategoriesController::class)->parameters(
-    [
-        "id"=>"id_cat"
-    ]
-);
+Route::resource('categories', CategoriesController::class);
 
 Route::middleware([
     'auth:sanctum',

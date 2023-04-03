@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-    @foreach (Auth()->user()->Post as $item)
+    @foreach (Auth()->user()->Post()->withTrashed()->get() as $item)
 
     <tr class="border p-3  border-slate-600 ">
         <td class="text-center py-6">{{$item->title}}</td>

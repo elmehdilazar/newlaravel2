@@ -7,6 +7,7 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\Categories;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -28,8 +29,10 @@ class HomeController extends Controller
         $post = Post::where("slug", $slug)->first();
         return view("show", ["posts" => $post]);
     }
-    public function create_post()
+    public function create()
     {
+       // $this->authorize('create', Post::class);
+
         $cat = Categories::all();
         return view("posts.create",["cat"=>$cat]);
     }
@@ -69,14 +72,19 @@ class HomeController extends Controller
     }
     // edit page
     public function edit($slug = null)
-    {    $cat = Categories::all();
-        $post = Post::where("slug", $slug)->first();
+    {
+
+       $cat = Categories::all();
+       $post = Post::where("slug", $slug)->first();
+        $this->authorize('update', $post);
+      
         return view("posts.edit", ["posts" => $post,"cat"=>$cat]);
     }
     // update data
     public function update(PostRequest $request, $id = null)
     {
         $post = Post::where("id", $id)->first();
+        $this->authorize('update', $post);
         if ($request->has("image")) {
             $file = $request->image;
             $image_name = time() . "_" . $file->getClientOriginalName();
@@ -101,6 +109,7 @@ class HomeController extends Controller
     public function delete($id = null)
     {
         $post = Post::where("id", $id)->first();
+        $this->authorize('delete', $post);
         $post->delete();
 
         return redirect()->route("home")->with([

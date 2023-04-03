@@ -20,16 +20,15 @@
     @foreach ($categories as $category)
 
     <tr class="border p-3  border-slate-600 ">
-        <td class="text-center py-6">{{$category->id_cat}}</td>
+        <td class="text-center py-6">{{$category->id}}</td>
         <td class="text-center ">{{ $category->name}}</td>
         <td class="text-center "> <div class="flex justify-center">
         <a  class="inline-flex items-center px-4 py-2 bg-gray-500 border mr-6 border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
-                    href="{{ route('categories.edit', ['category' => $category->id]) }}" role="button">editer</a>
-                <form id="{{ $category->id }}"action=" {{ route('categories.destroy',  $category->id) }}" method="post" >
+                    href="{{ route('categories.edit', $category) }}" >editer</a>
+                <form id="{{ $category->id }}"action=" {{ route('categories.destroy',  $category) }}" method="post" >
                     @csrf
                     @method('delete')
                 </form>
-
                 <button
                 onclick="
                 event.preventDefault();

@@ -1,3 +1,6 @@
+
+
+
 @extends('master.layout')
 
 
@@ -8,6 +11,7 @@
 @section('title')
     modifer
 @endsection
+
 @section('content')
     <div class="row justify-content-center mx-auto mt-5">
         <div class="col-6">
@@ -50,7 +54,7 @@
                           <div class="form-group">
                             <label for="my-select">categories</label>
                             <select id="my-select" class="form-control" name="cat_id">
-                                <option selected>select category</option>
+                                <option selected>{{$posts->categories->name}}</option>
                             @foreach ($cat as $item)
                                       <option value="{{$item->id}}">{{$item->name}}</option>
                             @endforeach
@@ -71,3 +75,4 @@
         integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous">
     </script>
 @endsection
+

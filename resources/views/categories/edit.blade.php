@@ -26,7 +26,7 @@
     </div>
 @endif
 
-                <form action="{{ route('categories.update', $categories->id)}}" method="post" >
+                <form action="{{ route('categories.update', $categories->id) }}" method="post" >
  @csrf  {{-- crsf tocken    --}}
                    @method("put") {{-- pour modifier    --}}
                     <div class="card-body">
