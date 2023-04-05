@@ -27,7 +27,7 @@
             <div class="col mt-3  d-flex justify-content-center">
                 <a name="" id="" class="btn btn-primary"
                     href="{{ route('post.edit', ['slug' => $posts->slug]) }}" role="button">editer</a>
-                <form id="{{ $posts->id }}"action=" {{ route('post.delete', ['id' => $posts->id]) }}" method="post" >
+                <form id="{{ $posts->id }}"action=" {{ route('post.destroy', ['id' => $posts->id]) }}" method="post" >
                     @csrf
                     @method('delete')
                 </form>

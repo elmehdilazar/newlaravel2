@@ -77,7 +77,7 @@ class HomeController extends Controller
        $cat = Categories::all();
        $post = Post::where("slug", $slug)->first();
         $this->authorize('update', $post);
-      
+
         return view("posts.edit", ["posts" => $post,"cat"=>$cat]);
     }
     // update data
@@ -106,14 +106,35 @@ class HomeController extends Controller
             "success" => "articel modifier"
         ]);
     }
-    public function delete($id = null)
+    public function destroy($id = null)
     {
         $post = Post::where("id", $id)->first();
-        $this->authorize('delete', $post);
+         $this->authorize('delete', $post);
         $post->delete();
 
         return redirect()->route("home")->with([
             "success" => "articel supprimé"
+        ]);
+    }
+    public function delete($id = null)
+    {
+        $post = Post::withTrashed()->where("id", $id)->first();
+        $this->authorize('forceDelete', $post);
+        $post->forceDelete();
+
+        return redirect()->route("home")->with([
+            "success" => "articel supprimé définitivement"
+        ]);
+    }
+    public function restore($id = null)
+    {
+        $post = Post::withTrashed()->where("id", $id)->first();
+      
+        $this->authorize('forceDelete', $post);
+        $post->restore();
+
+        return redirect()->route("home")->with([
+            "success" => "articel recuperer"
         ]);
     }
 }

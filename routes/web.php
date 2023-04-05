@@ -25,6 +25,8 @@ Route::prefix('posts')->group(function () {
     Route::get('/edit/{slug}', [homeController::class,"edit"])->name("post.edit");
     Route::put('/update/{id}', [homeController::class, "update"])->name("post.update");
     Route::delete('/delete/{id}', [homeController::class, "delete"])->name("post.delete");
+    Route::delete('/destroy/{id}', [homeController::class, "destroy"])->name("post.destroy");
+    Route::get('/restore/{id}', [homeController::class, "restore"])->name("post.restore");
 });
 Route::resource('categories', CategoriesController::class);
 

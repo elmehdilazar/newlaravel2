@@ -25,16 +25,37 @@
         <td class="text-center "> <div class="flex justify-center">
         <a  class="inline-flex items-center px-4 py-2 bg-gray-500 border mr-6 border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
                     href="{{ route('post.edit', ['slug' => $item->slug]) }}" role="button">editer</a>
-                <form id="{{ $item->id }}"action=" {{ route('post.delete', ['id' => $item->id]) }}" method="post" >
+
+
+
+                    @if ($item->trashed())
+                         <a  class="inline-flex items-center px-4 py-2 bg-green-500 border mr-6 border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                    href="{{ route('post.restore', ['id' => $item->id]) }}" role="button">restorer</a>
+   <form id="{{ $item->id }}"action=" {{ route('post.delete', ['id' => $item->id]) }}" method="post" >
                     @csrf
                     @method('delete')
                 </form>
+                   @else
+   <form id="{{ $item->id }}"action=" {{ route('post.destroy', ['id' => $item->id]) }}" method="post" >
+                    @csrf
+                    @method('delete')
+                </form>
+                    @endif
+
 
                 <button
                 onclick="
                 event.preventDefault();
                 if(confirm('étes vous sur ?')) document.getElementById({{ $item->id }}).submit();
-                "type="button" form="{{ $item->id }}"  class="inline-flex items-center px-4 py-2 ml-6 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">supprimé</button>
+                "type="button" form="{{ $item->id }}"  class="inline-flex items-center px-4 py-2 ml-6 bg-red-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+
+                 @if ($item->trashed())
+supprimé définitevement
+                   @else
+  supprimé
+                    @endif
+
+            </button>
         </div></td>
     </tr>
     @endforeach
